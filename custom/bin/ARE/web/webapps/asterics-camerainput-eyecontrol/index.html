@@ -24,7 +24,7 @@
 		//You could also make this configurable by the user.
 		setBaseURI("http://localhost:8081/rest/");
 
-		var modelFilePathOnWebserver='webapps/asterics-camerainput-cameramouse/models/XFaceTrackerMouse(WLM).acs';
+		var modelFilePathOnWebserver='webapps/asterics-camerainput-eyecontrol/models/EyeControlledMouse(W).acs';
 
 		function applyAndStart() {
 			/* 
@@ -39,6 +39,19 @@
 				},defaultErrorCallback,"KeySwitch1EventRouter",$("#switch1Action").val());
 			});
 		}
+		
+		function applyAndCalibrateTracker() {
+			applySettingsInXMLModelAndStart(modelFilePathOnWebserver, function(data,HTTPStatus){
+				//We now have to manually change the event routes from the swith inputs to the assigned mouse events.
+
+				//Finally we also start the calibration of the eye tracker by triggering the EyeX.1.calibrateCurrentProfile event.
+				triggerEvent(function(data,HTTPStatus){
+					triggerEvent(function(data,HTTPStatus){
+						triggerEvent(defaultSuccessCallback, defaultErrorCallback,"EyeX.1","calibrateCurrentProfile");
+					},defaultErrorCallback,"KeySwitch2EventRouter",$("#switch2Action").val());
+				},defaultErrorCallback,"KeySwitch1EventRouter",$("#switch1Action").val());
+			});
+		}		
 		
 		window.onload=updateWidgetsFromDeployedModel;		
 	</script>
@@ -79,8 +92,10 @@
 						<li>Windows: ARE.exe</li>
 					</ul>
 					<li><button onclick="applyAndStart()" title="Description: Applies all settings and starts the model" class="button"> Start Model </button></li>
-				</ol>				
-				
+				</ol>
+			<h2>Calibration</h2>
+				<li><button onclick="applyAndCalibrateTracker()" title="Description: Applies all settings, starts the model and start calibration of the tracker" class="button"> Start Model and Calibration </button></li>
+			<h2>Settings</h2>	
 				You can adjust the many settings below and save them as default for the next ARE start.
 				<p>
 		 		<button onclick="saveSettingsAsAutostartModel()" title="Description: Applies all settings and sets the model as autostart model" class="button"> Save Settings as Autostart </button>	
@@ -251,11 +266,11 @@
 			<p>
 			<h2>Major Plugins</h2>
 			<ul>
-				<li><a target="_blank" href="http://asterics.github.io/AsTeRICS/webapps/WebACS/help/index.html?plugins&sensors/XFacetrackerLK.htm">XFacetrackerLK</a></li>
+				<li><a target="_blank" href="http://asterics.github.io/AsTeRICS/webapps/WebACS/help/index.html?plugins&sensors//EyeX.htm">EyeX</a></li>
 				<li><a target="_blank" href="http://asterics.github.io/AsTeRICS/webapps/WebACS/help/index.html?plugins&actuators/Mouse.htm">Mouse</a></li>
 			</ul>
 			<h2>Edit Model</h2>
-			<a target="_blank" href="http://asterics.github.io/AsTeRICS/webapps/WebACS/?areBaseURI=http://localhost:8081&openFile=http://asterics.github.io/AsTeRICS/webapps/asterics-camerainput-cameramouse/models/XFaceTrackerMouse(WLM).acs">Open in WebACS</a>
+			<a target="_blank" href="http://asterics.github.io/AsTeRICS/webapps/WebACS/?areBaseURI=http://localhost:8081&openFile=http://asterics.github.io/AsTeRICS/webapps/asterics-camerainput-eyecontrol/models/EyeControlledMouse(W).acs">Open in WebACS</a>
 			<h2>Source Repository</h2>
 				You can fork and modify this <a target="_blank" href="https://github.com/asterics/asterics-camerainput-eyecontrol">repository</a>.
 			</section>

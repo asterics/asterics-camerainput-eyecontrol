@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\Users\mad\dev\asterics-solutions\sub\asterics-camerainput-cameramouse\custom\bin\ARE\web\webapps\asterics-camerainput-cameramouse\models\XFaceTrackerMouse(WLM).acs_2018_5_31_22_47" version="20130320">
+<model xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" modelName="C:\Users\mad\dev\asterics-solutions\sub\asterics-camerainput-eyecontrol\custom\bin\ARE\web\webapps\asterics-camerainput-eyecontrol\models\EyeControlledMouse(W).acs_2018_5_31_23_46" version="20130320">
   <modelDescription>
     <shortDescription>Mouse-replacement solution via Camera and Head Tracking.
 This model is described in the AsTeRICS User Manual 
@@ -709,44 +709,6 @@ A ButtonGrid GUI elements allows to select the type of the next mouse click. </d
         <posY>590</posY>
       </layout>
     </component>
-    <component id="XFacetrackerLK.1" type_id="asterics.XFacetrackerLK">
-      <description>X-platform webcamera-based face tracking sensor</description>
-      <ports>
-        <outputPort portTypeID="noseX">
-          <properties />
-        </outputPort>
-        <outputPort portTypeID="noseY">
-          <properties />
-        </outputPort>
-        <outputPort portTypeID="chinX">
-          <properties />
-        </outputPort>
-        <outputPort portTypeID="chinY">
-          <properties />
-        </outputPort>
-      </ports>
-      <properties>
-        <property name="frameGrabber" value="Default" />
-        <property name="frameGrabberFormat" value="" />
-        <property name="deviceList" value="" />
-        <property name="cameraSelection" value="0" />
-        <property name="cameraResolution" value="1" />
-        <property name="frameRate" value="0" />
-        <property name="titleVideoFrameWindow" value="" />
-        <property name="displayGUI" value="true" />
-        <property name="enableOverlaySettings" value="true" />
-      </properties>
-      <layout>
-        <posX>5</posX>
-        <posY>213</posY>
-      </layout>
-      <gui>
-        <posX>9197</posX>
-        <posY>1787</posY>
-        <width>625</width>
-        <height>1333</height>
-      </gui>
-    </component>
     <component id="ThresholdY" type_id="asterics.Threshold">
       <description>Threshold Level Processor</description>
       <ports>
@@ -1106,6 +1068,50 @@ A ButtonGrid GUI elements allows to select the type of the next mouse click. </d
         <posY>398</posY>
       </layout>
     </component>
+    <component id="EyeX.1" type_id="asterics.EyeX">
+      <description>interfaces to the EyeX Gaze tracking system</description>
+      <ports>
+        <inputPort portTypeID="xOffset">
+          <properties />
+        </inputPort>
+        <inputPort portTypeID="yOffset">
+          <properties />
+        </inputPort>
+        <outputPort portTypeID="gazeX">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="gazeY">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="posX">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="posY">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="fixationTime">
+          <properties />
+        </outputPort>
+        <outputPort portTypeID="closeTime">
+          <properties />
+        </outputPort>
+      </ports>
+      <properties>
+        <property name="enabled" value="true" />
+        <property name="averaging" value="4" />
+        <property name="minBlinkTime" value="50" />
+        <property name="midBlinkTime" value="200" />
+        <property name="maxBlinkTime" value="2000" />
+        <property name="fixationTime" value="700" />
+        <property name="pupilPositionMode" value="0" />
+        <property name="offsetCorrectionRadius" value="150" />
+        <property name="offsetCorrectionMode" value="1" />
+      </properties>
+      <layout>
+        <posX>15</posX>
+        <posY>202</posY>
+      </layout>
+    </component>
   </components>
   <channels>
     <channel id="binding.6">
@@ -1188,20 +1194,20 @@ A ButtonGrid GUI elements allows to select the type of the next mouse click. </d
         <port id="mouseY" />
       </target>
     </channel>
-    <channel id="binding.18">
+    <channel id="binding.32">
       <source>
-        <component id="XFacetrackerLK.1" />
-        <port id="noseY" />
+        <component id="EyeX.1" />
+        <port id="gazeY" />
       </source>
       <target>
         <component id="AveragerY" />
         <port id="input" />
       </target>
     </channel>
-    <channel id="binding.17">
+    <channel id="binding.24">
       <source>
-        <component id="XFacetrackerLK.1" />
-        <port id="noseX" />
+        <component id="EyeX.1" />
+        <port id="gazeX" />
       </source>
       <target>
         <component id="AveragerX" />
@@ -1210,8 +1216,8 @@ A ButtonGrid GUI elements allows to select the type of the next mouse click. </d
     </channel>
     <channel id="binding.25">
       <source>
-        <component id="XFacetrackerLK.1" />
-        <port id="noseX" />
+        <component id="EyeX.1" />
+        <port id="gazeX" />
       </source>
       <target>
         <component id="IntegrateX" />
@@ -1220,8 +1226,8 @@ A ButtonGrid GUI elements allows to select the type of the next mouse click. </d
     </channel>
     <channel id="binding.26">
       <source>
-        <component id="XFacetrackerLK.1" />
-        <port id="noseY" />
+        <component id="EyeX.1" />
+        <port id="gazeY" />
       </source>
       <target>
         <component id="IntegrateY" />
