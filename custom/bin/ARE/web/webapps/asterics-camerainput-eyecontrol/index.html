@@ -100,20 +100,26 @@
 				<p>
 		 		<button onclick="saveSettingsAsAutostartModel()" title="Description: Applies all settings and sets the model as autostart model" class="button"> Save Settings as Autostart </button>	
 			<p>
-			<h4>Mouse Movement</h4>
-			<label for="speed">Mouse Speed: </label>
-			1 <input title="Mouse speed" type="range" id="speed" value="60" min="1" max="100" data-asterics-model-binding-1='{"componentKey": "Slider.1","propertyKey": "default"}'> 100
-			<p>
+			<h3>Mouse Movement</h3>
 			<label for="averager">Smoothing Degree: </label>
-			1 <input title="Smoothing Degree" type="range" id="averager" value="5" min="1" max="50" data-asterics-model-binding-1='{"componentKey": "AveragerX","propertyKey": "bufferSize"}' data-asterics-model-binding-2='{"componentKey": "AveragerY","propertyKey": "bufferSize"}'> 50
+			1 <input title="Smoothing Degree" type="range" id="averager" value="20" min="1" max="50" data-asterics-model-binding-1='{"componentKey": "EyeX.1","propertyKey": "averaging"}'> 50
 			<p>
-			<h4>Clicking</h4>
+			<h3>Clicking</h3>
 			<label for="deadzone">Movement Radius: </label>
-			1 <input title="Movement Radius" type="range" id="deadzone" value="3" min="1" max="20" data-asterics-model-binding-1='{"componentKey": "Deadzone.1","propertyKey": "radius"}'> 20
+			1 <input title="Movement Radius" type="range" id="deadzone" value="10" min="1" max="20" data-asterics-model-binding-1='{"componentKey": "Deadzone.1","propertyKey": "radius"}'> 20
 			<p>
 			<label for="dwelltime">Dwell Time [ms]: </label>
-			1 <input title="Dwell Time [ms]" type="range" id="dwelltime" value="500" min="100" max="5000" data-asterics-model-binding-1='{"componentKey": "DwellTimer","propertyKey": "timePeriod"}'> 5000	
-			<h4>Mouse Activation Pattern</h4>
+			1 <input title="Dwell Time [ms]" type="range" id="dwelltime" value="1000" min="100" max="5000" data-asterics-model-binding-1='{"componentKey": "DwellTimer","propertyKey": "timePeriod"}'> 5000	
+			<h3>Mouse Activation</h3>
+			<h4>Quadrant offsets</h4>
+			<p>
+			<label for="quadrantOffsetX">Quadrant offset X: </label>
+			<input id="quadrantOffsetX" type="number" min="0" max="4000" placeholder="900" value="900" data-asterics-model-binding-1='{"componentKey": "ThresholdX","propertyKey": "thresholdHigh"}' data-asterics-model-binding-2='{"componentKey": "ThresholdX","propertyKey": "thresholdLow"}'>
+			<p>
+			<label for="quadrantOffsetY">Quadrant offset Y: </label>
+			<input id="quadrantOffsetY" type="number" min="0" max="4000" placeholder="500" value="500" data-asterics-model-binding-1='{"componentKey": "ThresholdY","propertyKey": "thresholdHigh"}' data-asterics-model-binding-2='{"componentKey": "ThresholdY","propertyKey": "thresholdLow"}'>
+			
+			<h4>Pattern</h4>
 			Click on screen quadrants to create a mouse activation pattern.
 			<p>
 			<!-- Use svg to draw 4 quadrants to create unlock pattern  -->
