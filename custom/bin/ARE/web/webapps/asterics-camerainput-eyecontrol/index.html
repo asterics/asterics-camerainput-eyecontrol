@@ -102,7 +102,7 @@
 			<p>
 			<h3>Mouse Movement</h3>
 			<label for="averager">Smoothing Degree: </label>
-			1 <input title="Smoothing Degree" type="range" id="averager" value="20" min="1" max="50" data-asterics-model-binding-1='{"componentKey": "EyeX.1","propertyKey": "averaging"}'> 50
+			1 <input title="Smoothing Degree" type="range" id="averager" value="20" min="1" max="500" data-asterics-model-binding-1='{"componentKey": "EyeX.1","propertyKey": "averaging"}'> 500
 			<p>
 			<h3>Clicking</h3>
 			<label for="deadzone">Movement Radius: </label>
@@ -111,6 +111,7 @@
 			<label for="dwelltime">Dwell Time [ms]: </label>
 			1 <input title="Dwell Time [ms]" type="range" id="dwelltime" value="1000" min="100" max="5000" data-asterics-model-binding-1='{"componentKey": "DwellTimer","propertyKey": "timePeriod"}'> 5000	
 			<h3>Mouse Activation</h3>
+			Imagine to divide the screen into 4 quadrants. Those can be used to define a mouse activation pattern similar to a smartphone unlock pattern. A pattern of 1,2,4,3 requires to look at the quadrant 1,2,4,3 in the specified order to activate mouse movement.
 			<h4>Quadrant offsets</h4>
 			<p>
 			<label for="quadrantOffsetX">Quadrant offset X: </label>
